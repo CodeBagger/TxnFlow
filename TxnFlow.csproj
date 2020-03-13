@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,7 +59,6 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -173,37 +173,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TxnFlowController.cs" />
-    <Compile Include="Data\Account.cs">
-      <DependentUpon>TxnFlowModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Person.cs">
-      <DependentUpon>TxnFlowModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Transaction.cs">
-      <DependentUpon>TxnFlowModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\TxnFlowModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TxnFlowModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\TxnFlowModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TxnFlowModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\TxnFlowModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TxnFlowModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Implementations\DataRepositoryModel.cs" />
-    <Compile Include="Interfaces\DataAccess\IDataRepository.cs" />
-    <Compile Include="Interfaces\DataAccess\IDataRepositoryModel.cs" />
-    <Compile Include="Interfaces\Entities\IPerson.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -213,29 +185,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Data\TxnFlowModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TxnFlowModel.edmx</DependentUpon>
-      <LastGenOutput>TxnFlowModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\TxnFlowModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TxnFlowModel.edmx</DependentUpon>
-      <LastGenOutput>TxnFlowModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Data\TxnFlowModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TxnFlowModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\TxnFlowModel.edmx.diagram">
-      <DependentUpon>TxnFlowModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -285,7 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Interfaces\BusinessRules\" />
     <Folder Include="Views\TxnFlow\" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +252,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="TxnFlow.Data\TxnFlow.Data.csproj">
+      <Project>{FDEAE6FE-400C-4E56-89B3-10D0EE68945F}</Project>
+      <Name>TxnFlow.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="TxnFlow.Interfaces\TxnFlow.Interfaces.csproj">
+      <Project>{616F595E-1896-4DA4-A1FC-59C57BA21C93}</Project>
+      <Name>TxnFlow.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="TxnFlow.Logic\TxnFlow.Logic.csproj">
+      <Project>{77D4448D-C3C9-4D58-A0B0-9700C876E3DB}</Project>
+      <Name>TxnFlow.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="TxnFlow.ServiceLayer\TxnFlow.ServiceLayer.csproj">
+      <Project>{EB410A2F-5B7C-4A5F-9BF0-4373312B26B9}</Project>
+      <Name>TxnFlow.ServiceLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
