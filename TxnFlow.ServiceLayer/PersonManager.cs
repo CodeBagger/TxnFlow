@@ -9,12 +9,12 @@ namespace TxnFlow.ServiceLayer
 {
     public class PersonManager
     {
-        public IPerson AddPerson(IPerson person, IDataRepository<IPerson> personRepository,ISavePersonRules saveRules)
+        public IPerson AddPerson(IPerson person, IDataRepositoryModel personRepository, ISavePersonRules saveRules)
         {
             var validateAllRules = saveRules.ValidateAllRules();
             if (validateAllRules.Result == Result.Success)
             {
-                return personRepository.Insert(person);
+                return personRepository.Create(person);
             }
 
             throw new SaveException($"Error saving Person. Message: {validateAllRules.Message}");
