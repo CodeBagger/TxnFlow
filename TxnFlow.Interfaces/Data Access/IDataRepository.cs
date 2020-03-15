@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TxnFlow.Interfaces.Data_Access
 {
@@ -11,6 +15,6 @@ namespace TxnFlow.Interfaces.Data_Access
         TEntity Insert(TEntity item);
 
         IEnumerable<TEntity> FindAll();
-        TEntity FindOne(int id);
+        TEntity FindOne(int code);
     }
 }
