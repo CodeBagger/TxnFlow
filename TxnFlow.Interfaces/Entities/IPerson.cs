@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,11 @@ namespace TxnFlow.Interfaces.Entities
         string name { get; set; }
         string surname { get; set; }
         string id_number { get; set; }
-        
+
 
         bool IsSaved { get; }
-        IList<IAccount> Accounts { get; }
+        ICollection<IAccount> Accounts { get; set; }
     }
+
+   
 }
