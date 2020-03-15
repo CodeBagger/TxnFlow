@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TxnFlow.Interfaces.Entities;
 
 namespace TxnFlow.Data
@@ -33,7 +36,7 @@ namespace TxnFlow.Data
         }
 
         public bool IsSaved { get; }
-        public IList<IAccount> Accounts { get; }
+        public ICollection<IAccount> Accounts { get; set; }
 
         public string name
         {

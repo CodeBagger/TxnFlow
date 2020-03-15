@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TxnFlow.Interfaces.Data_Access;
 
 namespace TxnFlow.Data
 {
     public class DataRepository<TEntity> : IDataRepository<TEntity> where TEntity : class
     {
-        DbSet<TEntity> _dbSet;
+        System.Data.Entity.DbSet<TEntity> _dbSet;
         private TxnFlowDBEntities _dbContext;
         public DataRepository(TxnFlowDBEntities dbContext)
         {
@@ -30,15 +33,21 @@ namespace TxnFlow.Data
             return _dbSet.Find(id);
         }
 
-        public TEntity Insert(TEntity item)
+        public void Insert(TEntity item)
         {
-            return _dbSet.Add(item);
+            _dbSet.Add(item);
+            _dbContext.SaveChanges();
         }
 
         public void Update(TEntity item)
         {
             _dbSet.Attach(item);
             _dbContext.Entry(item).State = EntityState.Modified;
+        }
+
+        TEntity IDataRepository<TEntity>.Insert(TEntity item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
