@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TxnFlow.Interfaces.Business_Rules;
 using TxnFlow.Interfaces.Rules;
 
 namespace TxnFlow.Logic.RuleSet
 {
-    public class DeletePersonRules : IDeletePersonRules
+    public class SavePersonRules : ISavePersonRules
     {
         private List<IRule> _rules;
-
-        public DeletePersonRules()
+        public SavePersonRules()
         {
             _rules = new List<IRule>();
         }
+
+        public void AddRule(IRule rule)
+        {
+            _rules.Add(rule);
+        }
+
         public RuleResult ValidateAllRules()
         {
             var messages = new List<string>();
@@ -25,11 +34,6 @@ namespace TxnFlow.Logic.RuleSet
                 }
             }
             return new RuleResult(result, string.Join(Environment.NewLine, messages));
-        }
-
-        public void AddRule(IRule rule)
-        {
-            _rules.Add(rule);
         }
     }
 }
